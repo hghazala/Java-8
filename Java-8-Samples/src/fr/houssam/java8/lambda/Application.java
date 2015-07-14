@@ -22,6 +22,9 @@ public class Application {
 		
 		PersonService ps = new PersonService();
 		ps.getPersonWithAgeGreaterThan10(persons);
+		ps.printPersonWithAgeGreaterThan10(persons);
+		int ageSum = ps.getPersonAgesSum(persons);
+		System.out.println(ageSum);
 	}
 
 }

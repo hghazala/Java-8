@@ -4,9 +4,7 @@ package fr.houssam.java8.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.houssam.java8.service.ArithmeticOperationsService;
-import fr.houssam.java8.service.Person;
-import fr.houssam.java8.service.PersonService;
+import fr.houssam.java8.entity.Person;
 
 public class Application {
 
