@@ -22,6 +22,7 @@ public class Application {
 		
 		PersonService ps = new PersonService();
 		ps.getPersonWithAgeGreaterThan10(persons);
+		
 	}
 
 }
