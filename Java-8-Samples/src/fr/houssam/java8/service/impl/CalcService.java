@@ -18,6 +18,7 @@ public class CalcService {
 			System.out.println("with lambda expression a - b = " + (a - b));
 		};
 		calcService2.calc(20, 6);
+		calcService2.puissance(5);
 	}
 
 }
