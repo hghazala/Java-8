@@ -1,6 +1,7 @@
 package fr.houssam.java8.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import fr.houssam.java8.entity.Person;
@@ -26,5 +27,11 @@ public class PersonService {
 		persons.forEach(
 						 person -> System.out.println(person.getNom())
 					   );
+	}
+	
+	public Optional<Person> fromPersonsById(int id, List<Person> persons){
+		return persons.stream()
+					  .filter(person -> person.getId() == id)
+					  .findFirst();
 	}
 }
