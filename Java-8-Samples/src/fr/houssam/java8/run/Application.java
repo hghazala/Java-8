@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 import fr.houssam.java8.entity.Person;
 import fr.houssam.java8.service.IArithmeticOperationsService;
@@ -36,10 +35,37 @@ public class Application {
 		activite4.add("directeur");
 		activite4.add("pagisteTTT");
 		
-		Person p1 = new Person(1, "HAHA", "GAGAGA", 29, activite1);
-		Person p2 = new Person(2, "GGGGA", "SISISI", 56, activite2);
-		Person p3 = new Person(3, "KKKK", "BBBBB", 45, activite3);
-		Person p4 = new Person(4, "SSSS", "FFFFF", 36, activite4);
+		Person p1 = Person
+						.builder()
+						.id(1)
+						.nom("Houssam")
+						.prenom("GHAZALA")
+						.age(29)
+						.activite(activite1).build();
+		Person p2 = Person
+						.builder()
+						.id(2)
+						.nom("GGGGA")
+						.prenom("SISISI")
+						.age(56)
+						.activite(activite2)
+						.build();
+		Person p3 = Person
+						.builder()
+						.id(3)
+						.nom("KKKK")
+						.prenom("BBBBB")
+						.age(45).
+						activite(activite3)
+						.build();
+		Person p4 = Person
+						.builder()
+						.id(4)
+						.nom("SSSS")
+						.prenom("FFFFF")
+						.age(36)
+						.activite(activite4)
+						.build();
 		
 		persons.add(p1);
 		persons.add(p2);
@@ -53,6 +79,7 @@ public class Application {
 		ps.getByActivity(persons, "pagisteTTT")
 		  .stream()
 		  .forEach(p->System.out.println(p.toString()));
+		
 		//Optional de java 8 nous permet d'avoir un objet null
 		//Je demande une personne avec un id 0, absent
 		//dans la liste persons.
