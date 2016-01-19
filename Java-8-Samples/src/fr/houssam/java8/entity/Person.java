@@ -6,17 +6,16 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
 @Data
 @Builder
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class Person {
-
 	private int id;
 	private String nom;
 	private String prenom;
 	private int age;
 	private List<String> activite;
-	
 }
