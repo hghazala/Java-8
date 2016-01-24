@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import com.google.common.collect.Lists;
@@ -32,12 +33,36 @@ public class PersonService {
 				);
 	}
 
+	//flatMap et groupingBy counting
 	public Map<String,Long> countByActivity(List<Person> persons){
 		return persons.stream()
 				.flatMap(p->p.getActivite().stream())
 				.collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
 	}
-
+	
+	//flatMap sample
+	public List<String> getAllActivities(List<Person> persons){
+		return persons.stream()
+				.flatMap(p->p.getActivite().stream())
+				.collect(Collectors.toList());
+	}
+	
+	//distinct et count
+	public long countAges(List<Person> persons){
+		return persons.stream()
+			.map(Person::getAge)
+			.distinct()
+			.count();
+	}
+	
+	//peek method (sert a debugger)
+	public List<Person> peek(List<Person> persons){
+		return persons.stream()
+		.filter(p -> p.getAge() > 34)
+		.peek(p -> System.out.println(p.getNom()))
+		.collect(Collectors.toList());
+	}
+	
 	public void toto(List<Person> persons){
 		Function<Person, Integer> mapper = person -> person.getId();
 		persons.stream()
@@ -137,4 +162,37 @@ public class PersonService {
 			.map(mapper);
 	}
 	
+	/**************Supplier**************/
+	
+	public void supplier(){
+		Supplier<Person> supplier1 =  Person::new;
+		
+		Supplier<Person> supplier2 = () -> new Person();
+		
+		Supplier<Person> supplier3 = PersonService::forSupplier;
+		
+		if(supplier1.get().equals(supplier2.get())){
+			System.out.println("1 et 2 sont égaux");
+		}
+		
+		if(supplier3.get().equals(supplier1.get())){
+			System.out.println("1 et 3 sont égaux");
+		}
+		
+	}
+	
+	public static Person forSupplier(){
+		return new Person();
+	}
+
+	public <T> void doSomething(Supplier<T> function, Consumer<T> onSuccess,
+			Consumer<Exception> onError) {
+		try {
+			T res = function.get();
+			onSuccess.accept(res);
+			throw new Exception();
+		} catch (Exception ex) {
+			onError.accept(ex);
+		}
+	}
 }

@@ -92,5 +92,10 @@ public class Application {
 		}
 		
 		getName();
+		ps.supplier();
+		Person person = Person.builder().id(1).nom("Foo").prenom("Bar").build();
+		ps.doSomething(() -> person,
+				t -> System.out.println(t),
+				t -> System.out.println("Error"));
 	}
 }
