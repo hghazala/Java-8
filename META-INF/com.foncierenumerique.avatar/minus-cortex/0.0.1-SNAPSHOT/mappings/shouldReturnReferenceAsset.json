@@ -1,0 +1,34 @@
+{
+  "id" : "d923a588-2563-4cf5-8815-f283579eb716",
+  "request" : {
+    "urlPattern" : "/references/organizations/[a-zA-Z0-9]+/assets/[a-zA-Z0-9]+",
+    "method" : "POST",
+    "headers" : {
+      "Content-Type" : {
+        "matches" : "application/json.*"
+      }
+    },
+    "bodyPatterns" : [ {
+      "matchesJsonPath" : "$[?(@.['requestedDate'] == '2021-05-15')]"
+    }, {
+      "matchesJsonPath" : "$[?(@.['dataRequestedDate'] == '2021-05-16')]"
+    }, {
+      "matchesJsonPath" : "$[?(@.['allAssets'] == true)]"
+    }, {
+      "matchesJsonPath" : "$.['requestedPropertyCodes'][?(@ == 'ADDRESS')]"
+    }, {
+      "matchesJsonPath" : "$.['requestedPropertyCodes'][?(@ == 'PHOTO_URL')]"
+    }, {
+      "matchesJsonPath" : "$.['authorizedAssetCodes'][?(@ == '59L')]"
+    } ]
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\"organizationCode\":\"\",\"code\":\"\",\"name\":\"\",\"type\":{\"type\":\"\",\"code\":\"\",\"names\":[]},\"parent\":null,\"effectiveDate\":null,\"expirationDate\":null,\"hierarchy\":null,\"children\":null,\"contractCodes\":null,\"contracts\":null,\"certificateCodes\":null,\"certificates\":null,\"documentCodes\":null,\"documents\":null,\"data\":null,\"stonalIdentifier\":null,\"parentStonalIdentifier\":null,\"externalIdentifiers\":null}",
+    "headers" : {
+      "Content-Type" : "application/json"
+    },
+    "transformers" : [ "response-template", "spring-cloud-contract" ]
+  },
+  "uuid" : "d923a588-2563-4cf5-8815-f283579eb716"
+}
