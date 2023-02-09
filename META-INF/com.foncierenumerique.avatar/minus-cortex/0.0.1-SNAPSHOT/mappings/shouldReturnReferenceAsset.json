@@ -1,0 +1,34 @@
+{
+  "id" : "07ec9fb7-a13f-4211-bf97-3d23b57389cd",
+  "request" : {
+    "urlPattern" : "/references/organizations/[a-zA-Z0-9]+/assets/[a-zA-Z0-9]+",
+    "method" : "POST",
+    "headers" : {
+      "Content-Type" : {
+        "matches" : "application/json.*"
+      }
+    },
+    "bodyPatterns" : [ {
+      "matchesJsonPath" : "$[?(@.['requestedDate'] == '2021-05-15')]"
+    }, {
+      "matchesJsonPath" : "$[?(@.['dataRequestedDate'] == '2021-05-16')]"
+    }, {
+      "matchesJsonPath" : "$[?(@.['allAssets'] == true)]"
+    }, {
+      "matchesJsonPath" : "$.['requestedPropertyCodes'][?(@ == 'ADDRESS')]"
+    }, {
+      "matchesJsonPath" : "$.['requestedPropertyCodes'][?(@ == 'PHOTO_URL')]"
+    }, {
+      "matchesJsonPath" : "$.['authorizedAssetCodes'][?(@ == '59L')]"
+    } ]
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\"organizationCode\":\"GOLDENCOUNTRY\",\"code\":\"59L\",\"name\":\"LE VENDÔME\",\"type\":{\"type\":\"ASSET\",\"code\":\"BUILDING\",\"names\":[{\"singular\":\"immeuble\",\"plural\":\"immeubles\"}]},\"parent\":\"\",\"effectiveDate\":\"2003-02-03\",\"expirationDate\":\"3000-01-01\",\"hierarchy\":[\"59L\"],\"childrenCodes\":[\"59L3\",\"59L2\",\"59L1\"],\"children\":null,\"contractCodes\":[\"B59L1\",\"B59L2\"],\"contracts\":null,\"certificateCodes\":null,\"certificates\":null,\"documentCodes\":null,\"documents\":null,\"data\":{\"data\":{\"ADDRESS\":[{\"property\":{\"code\":\"ADDRESS\",\"name\":\"Adresse\",\"type\":\"TEXT\",\"temporality\":\"INSTANT\",\"holderType\":\"ASSET\",\"holderCategories\":[\"BUILDING\",\"PARKING\"]},\"holderCode\":\"59L\",\"value\":\"2, Impasse Augustin Fresnel, 44800 Saint Herblain\",\"startDate\":\"1000-01-01\",\"endDate\":\"3000-01-01\",\"source\":\"Premiance - données sur les immeubles\"}],\"PHOTO\":[{\"property\":{\"code\":\"PHOTO\",\"name\":\"Photos\",\"type\":\"TEXT\",\"temporality\":\"INSTANT\",\"holderType\":\"ASSET\",\"holderCategories\":[\"BUILDING\",\"BUILDING_GROUP\"]},\"holderCode\":\"59L\",\"value\":\"/ouvrir-document-64aaf259b259ae76da67f16211589513-0409cb9e5b8945e44a535fb51c46f016-a87cf265c9d4c2c5091b304364e26307.jpg\",\"startDate\":\"1000-01-01\",\"endDate\":\"3000-01-01\",\"source\":\"Keep\"}]}}}",
+    "headers" : {
+      "Content-Type" : "application/json"
+    },
+    "transformers" : [ "response-template", "spring-cloud-contract" ]
+  },
+  "uuid" : "07ec9fb7-a13f-4211-bf97-3d23b57389cd"
+}
